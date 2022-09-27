@@ -1,0 +1,48 @@
+.form_register {
+    min-width: 450px;
+    max-width: auto;
+    min-height: 300px;
+    max-height: auto;
+    background-color: #1E293B;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.input_register {
+    min-width: 250px;
+    max-width: auto;
+    min-height: 40px;
+    max-height: auto;
+    margin: 10px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+}
+
+.label_register {
+    padding: 5px;
+}
+
+.btn_SubmitRegister {
+    width: 80px;
+    height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #2563EB;
+    color: white;
+    font-weight: 800;
+    margin: 10px;
+}
+
+.btn_SubmitRegister:hover {
+    background-color: #1E40AF;
+}
+
+.spanErrorRegister {
+    color: #EC4899;
+    font-size: 12px;
+}
