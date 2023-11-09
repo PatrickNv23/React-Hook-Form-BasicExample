@@ -4,11 +4,11 @@ import '../css/FormComponent.css';
 export default function Form() {
 
 
-    const { register, formState: { errors, isDirty, isValid }, handleSubmit, watch, setValue, getValues, reset, resetField } = useForm({
+    const { register, formState: { errors, isDirty, isValid }, handleSubmit, watch, setValue, getValues, reset, resetField, setError, clearErrors } = useForm({
         mode: 'onChange'
     });
 
-    const handleSubmitData = (data) => {
+    const submitData = (data) => {
         console.log(data);
         console.log(watch("name")) // watch solo puede observar a uno
         console.log(watch("lastname"))
@@ -34,14 +34,22 @@ export default function Form() {
         resetField('email')
     }
 
-    // con register, se le asigna un nombre clave a cada input del formulario para que el hook trabaje con el
-    // el objeto register recibe dos parámetros(el segundo es opcional)
-    // -> nombre con el que se identificará el valor del input en String 
-    // -> objeto de validaciones que es opcional
+    const setFormErrors = () => {
+        setError('email', {
+            type: 'custom',
+            message: 'Email with errors'
+        })
+    }
+
+    const clearFormErrors = () => {
+        //clearErrors('email')
+        clearErrors(['email', 'direction'])
+        //clearErrors()
+    }
 
     return (
         <>
-            <form className='form_register' onSubmit={handleSubmit(handleSubmitData)}>
+            <form className='form_register' onSubmit={handleSubmit(submitData)}>
 
 
                 <label className='label_register' htmlFor="name">Name: </label>
@@ -91,6 +99,7 @@ export default function Form() {
 
                 {errors.email && <span className='spanErrorRegister'>The field contains errors</span>}
 
+                {/* {errors.email && <span className='spanErrorRegister'>{errors.email.message}</span>} */}
 
 
 
@@ -153,6 +162,14 @@ export default function Form() {
 
                 <button type='button' onClick={resetEmailField}>
                     Reset Email
+                </button>
+
+                <button type='button' onClick={setFormErrors}>
+                    set Errors
+                </button>
+
+                <button type='button' onClick={clearFormErrors}>
+                    Clear errors
                 </button>
 
                 {isValid ? <span>The form is valid</span> : <span>The form is invalid</span>}
